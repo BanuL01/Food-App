@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/delight"
+    android:id="@+id/logo_dd_1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -24,50 +24,23 @@
         android:id="@+id/enjoy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="23dp"
         android:fontFamily="@font/dancing_script"
         android:text="Ready to Enjoy your
 Favourite Food"
         android:textColor="#220038"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/dine_delight"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/delight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="53dp"
-        android:fontFamily="@font/tillana"
-        android:text="Delight"
-        android:textColor="#220038"
-        android:textSize="60dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/dine_delight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/tillana"
-        android:text="Dine"
-        android:textColor="#220038"
-        android:textSize="60dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/delight"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="76dp"
         android:indeterminate="true"
         android:progressBackgroundTint="#672890"
         android:progressTint="#67288F"
@@ -77,12 +50,13 @@ Favourite Food"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="82dp"
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/logo_transparent2"
-        tools:layout_editor_absoluteY="496dp" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg1"
+        app:srcCompat="@drawable/dinedelight_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
