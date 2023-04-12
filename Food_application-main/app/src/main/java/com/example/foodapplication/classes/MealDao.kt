@@ -11,7 +11,7 @@ interface MealDao {
     @Query("Select * from meals")
     suspend fun getAll(): List<Meal>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUsers(vararg user: Meal)
+    suspend fun insertMeal(vararg user: Meal)
     @Insert
     suspend fun insertAll(vararg users: Meal)
 }

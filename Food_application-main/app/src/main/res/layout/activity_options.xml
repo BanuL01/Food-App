@@ -22,53 +22,71 @@
         android:id="@+id/dine_delight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="140dp"
         android:fontFamily="@font/tillana"
         android:text="Dine"
         android:textColor="#220038"
         android:textSize="60dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/delight"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="263dp" />
 
     <TextView
         android:id="@+id/delight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="368dp"
+        android:layout_marginEnd="88dp"
         android:fontFamily="@font/tillana"
         android:text="Delight"
         android:textColor="#220038"
         android:textSize="60dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <Button
+        android:id="@+id/search2"
+        android:layout_width="250dp"
+        android:layout_height="64dp"
+        android:backgroundTint="#67288F"
+        android:fontFamily="@font/tillana"
+        android:text="Search for Meals By Ingredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="713dp" />
 
     <Button
         android:id="@+id/add_meals"
         android:layout_width="131dp"
         android:layout_height="54dp"
-        android:layout_marginTop="84dp"
         android:backgroundTint="#67288F"
-        android:text="Add Meals"
         android:fontFamily="@font/tillana"
+        android:text="Add Meals"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delight" />
+        tools:layout_editor_absoluteY="649dp" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="250dp"
         android:layout_height="54dp"
-        android:layout_marginTop="148dp"
         android:backgroundTint="#67288F"
         android:fontFamily="@font/tillana"
         android:text="Search for Meals"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delight" />
+        tools:layout_editor_absoluteY="797dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:rotationX="-7"
+        app:srcCompat="@drawable/logo_transparent2"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="262dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
