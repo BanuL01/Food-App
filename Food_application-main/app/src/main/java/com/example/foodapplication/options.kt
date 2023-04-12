@@ -54,7 +54,33 @@ class options : AppCompatActivity() {
                         Measure10 = "Dash"
                     )
 
-                    MealDao.insertMeal(sweet_and_sour_pork)
+                    val chicken_marengo = Meal(
+                        name = "Chicken Marengo",
+                        category = " Chicken",
+                        area = "French",
+                        instructions = "Heat the oil in a large flameproof casserole dish and stir-fry the mushrooms until they start to soften. Add the chicken legs and cook briefly on each side to colour them a little.\\r\\nPour in the passata, crumble in the stock cube and stir in the olives. Season with black pepper \\u2013 you shouldn\\u2019t need salt. Cover and simmer for 40 mins until the chicken is tender. Sprinkle with parsley and serve with pasta and a salad, or mash and green veg, if you like.",
+                        mealThumb = "\"https:\\/\\/www.themealdb.com\\/images\\/media\\/meals\\/qpxvuq1511798906.jpg",
+                        youtube =  "\\/\\/www.youtube.com\\/watch?v=U33HYUr-0Fw",
+                        Ingredient1 = "Olive Oil",
+                        Ingredient2 = "Mushrooms",
+                        Ingredient3 = "Chicken Legs",
+                        Ingredient4 = "Passata",
+                        Ingredient5 = "Chicken Stock Cube",
+                        Ingredient6 = "Black Olives",
+                        Ingredient7 = "Parsley",
+                        Measure1 = "1 tbs",
+                        Measure2 = "300g",
+                        Measure3 = "4",
+                        Measure4 = "500g",
+                        Measure5 = "1",
+                        Measure6 = "100g ",
+                        Measure7 = "Chopped",
+                        source = "https://www.bbcgoodfood.com/recipes/3146682/chicken-marengo",
+
+                    )
+
+
+                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo)
                     val meals: List<Meal> = MealDao.getAll()
                     print(meals)
                 }
