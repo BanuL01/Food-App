@@ -7,16 +7,27 @@
     android:background="#EBCDFF"
     tools:context=".options">
 
+    <ImageView
+        android:id="@+id/logo_dd"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="188dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dinedelight_logo" />
+
     <Button
         android:id="@+id/search2"
         android:layout_width="250dp"
         android:layout_height="64dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#67288F"
         android:fontFamily="@font/tillana"
         android:text="Search for Meals By Ingredient"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_meals" />
 
@@ -24,12 +35,12 @@
         android:id="@+id/search"
         android:layout_width="250dp"
         android:layout_height="54dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#67288F"
         android:fontFamily="@font/tillana"
         android:text="Search for Meals"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search2" />
 
@@ -37,22 +48,26 @@
         android:id="@+id/add_meals"
         android:layout_width="131dp"
         android:layout_height="54dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#67288F"
         android:fontFamily="@font/tillana"
         android:text="Add Meals"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_dd" />
 
     <ImageView
-        android:id="@+id/logo_dd"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="126dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/bg_3"
+        android:layout_width="500dp"
+        android:layout_height="812dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="-550dp"
+        android:rotation="15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dinedelight_logo" />
+        app:srcCompat="@drawable/bg3"
+        tools:layout_editor_absoluteX="-11dp"
+        tools:layout_editor_absoluteY="-200dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
