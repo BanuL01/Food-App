@@ -1,5 +1,6 @@
 package com.example.foodapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +19,12 @@ class options : AppCompatActivity() {
         val db = Room.databaseBuilder(this, AppDatabase::class.java,
             "mydatabase").build()
         val MealDao = db.MealDao()
+
+        var search_ingredients = findViewById<Button>(R.id.search2)
+        search_ingredients.setOnClickListener {
+            val intent = Intent(this, Search_by_ingredients::class.java)
+            startActivity(intent)
+        }
 
         var add_meal_db = findViewById<Button>(R.id.add_meals)
         add_meal_db.setOnClickListener {
