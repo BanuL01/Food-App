@@ -70,7 +70,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,8 +85,9 @@
                 android:elevation="30dp">
 
                 <LinearLayout
-                    android:layout_width="436dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:radius ="50dp"
                     android:background="#CD9EE7">
 
                     <ImageView
@@ -102,8 +104,8 @@
                         android:id="@+id/name_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="30dp"
                         android:fontFamily="sans-serif"
                         android:paddingLeft="0dp"
@@ -125,7 +127,7 @@
                         android:id="@+id/category_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="170dp"
                         android:layout_marginRight="15dp"
                         android:fontFamily="sans-serif-light"
@@ -137,7 +139,7 @@
                         android:id="@+id/area_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Area:"
@@ -148,7 +150,7 @@
                         android:id="@+id/instr_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Instructions: "
@@ -159,7 +161,7 @@
                         android:id="@+id/meal_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Meal Thumb: "
@@ -170,7 +172,7 @@
                         android:id="@+id/tags_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Tags: "
@@ -181,7 +183,7 @@
                         android:id="@+id/yt_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Youtube: "
@@ -192,7 +194,7 @@
                         android:id="@+id/ingre_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Ingredients: "
@@ -203,7 +205,7 @@
                         android:id="@+id/meeasure_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
                         android:text="Measure: "
@@ -214,7 +216,7 @@
                         android:id="@+id/src_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginRight="15dp"

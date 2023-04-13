@@ -1,9 +1,11 @@
 package com.example.foodapplication
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.room.Room
 import com.example.foodapplication.classes.AppDatabase
 import com.example.foodapplication.classes.Meal
@@ -28,7 +30,16 @@ class options : AppCompatActivity() {
 
         var add_meal_db = findViewById<Button>(R.id.add_meals)
         add_meal_db.setOnClickListener {
-            println("reached")
+            println("reached") //test
+
+            //show the toast
+            fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
+                Toast.makeText(context, message, duration).show()
+            }
+
+            showToast(this, "Meal added to the DataBase!")
+
+            //meal adding to tables
             runBlocking {
                 launch {
                     val sweet_and_sour_pork = Meal(
@@ -116,7 +127,10 @@ class options : AppCompatActivity() {
                     MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo)
                     val meals: List<Meal> = MealDao.getAll()
                     print(meals)
+
+
                 }
+
             }
         }
 
