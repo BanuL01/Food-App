@@ -28,6 +28,12 @@ class options : AppCompatActivity() {
             startActivity(intent)
         }
 
+        var search_meal = findViewById<Button>(R.id.search)
+        search_meal.setOnClickListener {
+            val intent = Intent(this, Search_meals::class.java)
+            startActivity(intent)
+        }
+
         var add_meal_db = findViewById<Button>(R.id.add_meals)
         add_meal_db.setOnClickListener {
             println("reached") //test
@@ -122,9 +128,42 @@ class options : AppCompatActivity() {
                         source = "",
                     )
 
+                    val leblebi_Soup = Meal(
+                        name = "Leblebi Soup",
+                        category = "Vegetarian",
+                        area = "Tunisian",
+                        instructions = "Heat the oil in a large pot. Add the onion and cook until translucent.\r\nDrain the soaked chickpeas and add them to the pot together with the vegetable stock. Bring to the boil, then reduce the heat and cover. Simmer for 30 minutes.\r\nIn the meantime toast the cumin in a small ungreased frying pan, then grind them in a mortar. Add the garlic and salt and pound to a fine paste.\r\nAdd the paste and the harissa to the soup and simmer until the chickpeas are tender, about 30 minutes.\r\nSeason to taste with salt, pepper and lemon juice and serve hot.",
+                        mealThumb = "https://www.themealdb.com/images/media/meals/x2fw9e1560460636.jpg",
+                        tags = "Soup",
+                        youtube = "https://www.youtube.com/watch?v=BgRifcCwinY",
+                        Ingredient1 = "Olive oil",
+                        Ingredient2 = "Onion",
+                        Ingredient3 = "Chickpeas",
+                        Ingredient4 = "Vegetable Stock",
+                        Ingredient5 = "Cumin",
+                        Ingredient6 = "Garlic",
+                        Ingredient7 = "Salt",
+                        Ingredient8 = "Harissa Spice",
+                        Ingredient9 = "Pepper",
+                        Ingredient10 = "Lime",
+                        Measure1 = "2 tbs",
+                        Measure2 = "1 medium finely diced",
+                        Measure3 = "250g",
+                        Measure4 = "1.5L",
+                        Measure5 = "1 tsp",
+                        Measure6 = "5 cloves",
+                        Measure7 = "1/2 tsp",
+                        Measure8 = "1 tsp",
+                        Measure9 = "pinch",
+                        Measure10 = "1/2",
+                        source = "http://allrecipes.co.uk/recipe/43419/leblebi--tunisian-chickpea-soup-.aspx",
 
 
-                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo)
+                    )
+
+
+
+                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo,beef_Banh_Mi_Bowls)
                     val meals: List<Meal> = MealDao.getAll()
                     print(meals)
 

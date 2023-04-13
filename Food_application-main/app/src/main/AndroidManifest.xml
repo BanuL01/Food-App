@@ -12,6 +12,9 @@
         android:theme="@style/Theme.FoodApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Search_meals"
+            android:exported="false" />
+        <activity
             android:name=".Search_by_ingredients"
             android:exported="false" />
         <activity

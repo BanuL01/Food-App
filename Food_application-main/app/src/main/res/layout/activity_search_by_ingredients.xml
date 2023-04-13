@@ -64,7 +64,7 @@
             android:layout_marginTop="7dp"
             android:backgroundTint="#67288F"
             android:fontFamily="@font/tillana"
-            android:text="Savr meals to database" />
+            android:text="Save meals to database" />
 
     </LinearLayout>
 
