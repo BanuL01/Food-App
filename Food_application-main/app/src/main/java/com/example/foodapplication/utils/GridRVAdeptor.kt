@@ -31,8 +31,12 @@ internal class GridRVAdeptor(
     // in base adapter class we are creating variables
     // for layout inflater, course image view and course text view.
     private var layoutInflater: LayoutInflater? = null
-    private lateinit var minicard_name: TextView
-    private lateinit var minicard_category: TextView
+    private lateinit var mealName: TextView
+    private lateinit var mealCategory: TextView
+    private lateinit var mealArea: TextView
+    private lateinit var mealInstruction: TextView
+    private lateinit var mealThumb: TextView
+    private lateinit var mealTags: TextView
     private lateinit var minicard_image: LinearLayout
 
     // below method is use to return the count of course list
@@ -68,11 +72,24 @@ internal class GridRVAdeptor(
         }
         // on below line we are initializing our course image view
         // and course text view with their ids.
-//        minicard_image = convertView!!.findViewById(R.id.idIVCourse)
-//        minicard_name = convertView.findViewById(R.id.meal_name)
-//        minicard_category = convertView.findViewById(R.id.meal_cat)
+        mealName = convertView!!.findViewById(R.id.name_id)
+        mealCategory = convertView.findViewById(R.id.category_tv)
+        mealArea = convertView.findViewById(R.id.area_tv)
+        mealInstruction = convertView.findViewById(R.id.instr_tv)
+        mealThumb = convertView.findViewById(R.id.meal_tv)
+        mealTags = convertView.findViewById(R.id.tags_tv)
+
+
+
 //        // on below line we are setting image for our course image view.
-//
+
+        mealName.text = courseList[position].meal.name
+        mealCategory.text = "Category: " + courseList[position].meal.category
+        mealArea.text = "Area: " + courseList[position].meal.area
+        mealInstruction.text = "Instructions: " + courseList[position].meal.instructions
+        mealThumb.text = "Meal Thumb: " + courseList[position].meal.mealThumb
+        mealTags.text = "Tags: " + courseList[position].meal.tags
+
 //        // on below line we are setting text in our course text view.
 //        minicard_name.setText(courseList[position].meal_name)
 //        minicard_category.setText(courseList[position].meal_category)
