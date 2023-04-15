@@ -9,8 +9,7 @@ import android.widget.*
 import androidx.room.Room
 import com.example.foodapplication.classes.AppDatabase
 import com.example.foodapplication.classes.Meal
-import com.example.foodapplication.classes.MealDao
-import com.example.foodapplication.utils.GridRVAdeptor
+import com.example.foodapplication.utils.GridRVAdeptor_MealCards
 import com.example.foodapplication.utils.GridViewModal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,14 +23,13 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class Search_by_ingredients : AppCompatActivity() {
+    lateinit var courseGRV: GridView
+    lateinit var courseList: List<GridViewModal>
 
     var allMeal = arrayListOf<Meal>()
     override fun onCreate(savedInstanceState: Bundle?) {
         // on below line we are creating
         // variables for grid view and course list
-        lateinit var courseGRV: GridView
-        lateinit var courseList: List<GridViewModal>
-
         val db = Room.databaseBuilder(
             this, AppDatabase::class.java,
             "mydatabase"
@@ -105,7 +103,7 @@ class Search_by_ingredients : AppCompatActivity() {
             for (meal in allMeal) {
                 courseList = courseList + GridViewModal(meal)
             }
-            val courseAdapter = GridRVAdeptor(courseList = courseList, this@Search_by_ingredients)
+            val courseAdapter = GridRVAdeptor_MealCards(courseList = courseList, this@Search_by_ingredients)
 
             // on below line we are setting adapter to our grid view.
             courseGRV.adapter = courseAdapter

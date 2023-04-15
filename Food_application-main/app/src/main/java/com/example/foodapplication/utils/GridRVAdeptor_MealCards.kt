@@ -1,9 +1,6 @@
 package com.example.foodapplication.utils
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.os.Build
 import android.view.LayoutInflater
@@ -11,23 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.foodapplication.R
 
 //source - https://www.geeksforgeeks.org/android-gridview-in-kotlin/
 
 // on below line we are creating an
 // adapter class for our grid view.
-internal class GridRVAdeptor(
+internal class GridRVAdeptor_MealCards(
     // on below line we are creating two
     // variables for course list and context
     private val courseList: List<GridViewModal>,

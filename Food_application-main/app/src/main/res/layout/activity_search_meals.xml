@@ -23,10 +23,10 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/text_field_style"
             android:backgroundTint="#7DB070D0"
             android:ems="10"
             android:hint="Search Your Meal Here!"
-            android:background="@drawable/text_field_style"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:textAlignment="center"
@@ -42,7 +42,19 @@
             android:backgroundTint="#67288F"
             android:fontFamily="@font/tillana"
             android:text="Search"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
     </LinearLayout>
+
+    <GridView
+        android:id="@+id/minicard_grid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:paddingBottom="20dp"
+        android:verticalSpacing="15dp" />
 
 </LinearLayout>
