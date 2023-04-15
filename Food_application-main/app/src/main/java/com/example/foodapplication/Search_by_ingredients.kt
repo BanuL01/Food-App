@@ -71,7 +71,7 @@ class Search_by_ingredients : AppCompatActivity() {
             }
         })
         retrieve.setOnClickListener {
-            //
+            //clear all pre used data
             allMeal.clear()
 
             //collecting all JSON string

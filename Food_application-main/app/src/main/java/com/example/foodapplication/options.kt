@@ -160,13 +160,9 @@ class options : AppCompatActivity() {
 
                     )
 
-
-
-//                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo,beef_Banh_Mi_Bowls)
+                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo,beef_Banh_Mi_Bowls)
                     val meals: List<Meal> = MealDao.getAll()
                     print(meals)
-
-
                 }
 
             }
