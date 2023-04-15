@@ -17,7 +17,7 @@ class options : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options)
 
-        // create the database
+        // create or connect  the database
         val db = Room.databaseBuilder(this, AppDatabase::class.java,
             "mydatabase").build()
         val MealDao = db.MealDao()
@@ -36,7 +36,6 @@ class options : AppCompatActivity() {
 
         var add_meal_db = findViewById<Button>(R.id.add_meals)
         add_meal_db.setOnClickListener {
-            println("reached") //test
 
             //show the toast
             fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -163,7 +162,7 @@ class options : AppCompatActivity() {
 
 
 
-                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo,beef_Banh_Mi_Bowls)
+//                    MealDao.insertMeal(sweet_and_sour_pork, chicken_marengo,beef_Banh_Mi_Bowls)
                     val meals: List<Meal> = MealDao.getAll()
                     print(meals)
 

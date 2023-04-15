@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv1_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
     android:layout_marginTop="5dp"
+    android:layout_marginRight="15dp"
     android:layout_marginBottom="30dp"
     android:background="#CD9EE7"
     android:backgroundTint="#CD9EE7"
@@ -17,7 +19,7 @@
         android:radius="50dp">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/mealthumbId"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="5dp"
@@ -45,8 +47,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -84,17 +86,6 @@
             android:textStyle="bold|italic" />
 
         <TextView
-            android:id="@+id/meal_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="15dp"
-            android:text="Meal Thumb: "
-            android:textSize="20dp"
-            android:textStyle="bold|italic" />
-
-        <TextView
             android:id="@+id/tags_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,17 +115,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:text="Ingredients: "
-            android:textSize="20dp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/meeasure_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="15dp"
-            android:text="Measure: "
             android:textSize="20dp"
             android:textStyle="bold|italic" />
 

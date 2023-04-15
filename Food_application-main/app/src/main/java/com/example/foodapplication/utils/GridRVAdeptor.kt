@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,11 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -35,13 +41,14 @@ internal class GridRVAdeptor(
     private lateinit var mealCategory: TextView
     private lateinit var mealArea: TextView
     private lateinit var mealInstruction: TextView
-    private lateinit var mealThumb: TextView
     private lateinit var mealTags: TextView
     private lateinit var  mealyt: TextView
     private lateinit var mealIngredients: TextView
-    private lateinit var mealIngredients2: TextView
-    private lateinit var minicard_image: LinearLayout
-
+    private lateinit var mealsource :TextView
+    private lateinit var mealImageSrc :TextView
+    private lateinit var mealConfirmed :TextView
+    private lateinit var mealDateModified :TextView
+    private lateinit var mealImage: ImageView
     // below method is use to return the count of course list
     override fun getCount(): Int {
         return courseList.size
@@ -58,6 +65,7 @@ internal class GridRVAdeptor(
     }
 
     // in below function we are getting individual item of grid view.
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         // on blow line we are checking if layout inflater
@@ -79,52 +87,77 @@ internal class GridRVAdeptor(
         mealCategory = convertView.findViewById(R.id.category_tv)
         mealArea = convertView.findViewById(R.id.area_tv)
         mealInstruction = convertView.findViewById(R.id.instr_tv)
-        mealThumb = convertView.findViewById(R.id.meal_tv)
         mealTags = convertView.findViewById(R.id.tags_tv)
         mealyt = convertView.findViewById(R.id.yt_tv)
         mealIngredients = convertView.findViewById(R.id.ingre_tv)
-        mealIngredients2 = convertView.findViewById(R.id.ingre_tv)
+        mealsource = convertView.findViewById(R.id.src_tv)
+        mealImageSrc = convertView.findViewById(R.id.img_src_tv)
+        mealConfirmed = convertView.findViewById(R.id.ccc_tv)
+        mealDateModified = convertView.findViewById(R.id.dm_tv)
+        mealImage = convertView.findViewById(R.id.mealthumbId)
+        var card = convertView.findViewById<CardView>(R.id.cv1_id)
 
+        var listofingredients = arrayListOf(courseList[position].meal.Ingredient1,courseList[position].meal.Ingredient2,courseList[position].meal.Ingredient3, courseList[position].meal.Ingredient4, courseList[position].meal.Ingredient5, courseList[position].meal.Ingredient6, courseList[position].meal.Ingredient7, courseList[position].meal.Ingredient8, courseList[position].meal.Ingredient9, courseList[position].meal.Ingredient10, courseList[position].meal.Ingredient11, courseList[position].meal.Ingredient12, courseList[position].meal.Ingredient13, courseList[position].meal.Ingredient14, courseList[position].meal.Ingredient15, courseList[position].meal.Ingredient16, courseList[position].meal.Ingredient17,courseList[position].meal.Ingredient18, courseList[position].meal.Ingredient19, courseList[position].meal.Ingredient20)
+        var listofmeasures = arrayListOf(courseList[position].meal.Measure1, courseList[position].meal.Measure2, courseList[position].meal.Measure3, courseList[position].meal.Measure4, courseList[position].meal.Measure5, courseList[position].meal.Measure6, courseList[position].meal.Measure7, courseList[position].meal.Measure8, courseList[position].meal.Measure9, courseList[position].meal.Measure10, courseList[position].meal.Measure11, courseList[position].meal.Measure12, courseList[position].meal.Measure13, courseList[position].meal.Measure14, courseList[position].meal.Measure15, courseList[position].meal.Measure16, courseList[position].meal.Measure17, courseList[position].meal.Measure18, courseList[position].meal.Measure19, courseList[position].meal.Measure20)
 
-
+        var Stringtofingredients = ""
+        for (index in 0 until  20){
+            if ( listofingredients[index] !="") Stringtofingredients += listofingredients[index] +" - " + listofmeasures[index]+",\n                       "
+        }
 
 //        // on below line we are setting image for our course image view.
 
         mealName.text = courseList[position].meal.name
         mealCategory.text = "Category: " + courseList[position].meal.category
         mealArea.text = "Area: " + courseList[position].meal.area
-        mealInstruction.text = "Instructions: " + courseList[position].meal.instructions
-        mealThumb.text = "Meal Thumb: " + courseList[position].meal.mealThumb
+        mealInstruction.text = "Instructions: \n" + courseList[position].meal.instructions
+        mealInstruction.justificationMode = JUSTIFICATION_MODE_INTER_WORD
         mealTags.text = "Tags: " + courseList[position].meal.tags
         mealyt.text = "Youtube: " + courseList[position].meal.youtube
-        mealIngredients.text = "Ingredients: " + courseList[position].meal.Ingredient1
-        mealIngredients2.text = "Ingredients: " + courseList[position].meal.Ingredient2
+        mealIngredients.text = "Ingredients: " + Stringtofingredients
+        mealsource.text = "Source: " + courseList[position].meal.source
+        mealImageSrc.text = "Image Source: " + courseList[position].meal.imageSource
+        mealConfirmed.text = "Creative Commons Confirmed: " + courseList[position].meal.creativeCommonsConfirmed
+        mealDateModified.text = "Date Modified: " + courseList[position].meal.dateModified
 
 
-//        // on below line we are setting text in our course text view.
-//        minicard_name.setText(courseList[position].meal_name)
-//        minicard_category.setText(courseList[position].meal_category)
-//        var bitmapDrawable: BitmapDrawable? = null
-//        Glide.with(convertView)
-//            .asBitmap()
-//            .load(courseList[position].meal_thumbnail)
-//            .into(object : CustomTarget<Bitmap>() {
-//                override fun onResourceReady(
-//                    resource: Bitmap,
-//                    transition: Transition<in Bitmap>?
-//                ) {
-//                    val drawable = BitmapDrawable(context.resources, resource)
-//                    drawable.alpha = 150
-//                    minicard_image.background = drawable
-//                }
-//
-//                override fun onLoadCleared(placeholder: Drawable?) {
-//                    // this is called when imageView is cleared on lifecycle call or for
-//                    // some other reason.
-//                    // if you are referencing the bitmap somewhere else too other than this imageView
-//                    // clear it here as you can no longer have the bitmap
-//                }
-//            })
+//        mealArea.isVisible = false
+//        mealInstruction.isVisible = false
+//        mealTags.isVisible = false
+//        mealyt.isVisible = false
+//        mealIngredients.isVisible = false
+//        mealsource.isVisible = false
+//        mealDateModified.isVisible = false
+//        mealConfirmed.isVisible = false
+//        mealImageSrc.isVisible = false
+
+
+        if (courseList[position].meal.source ==null){
+            mealsource.isVisible = false
+        }
+        if (courseList[position].meal.tags ==null){
+            mealTags.isVisible = false
+        }
+        if (courseList[position].meal.youtube ==null){
+            mealyt.isVisible = false
+        }
+        if (courseList[position].meal.imageSource ==null){
+            mealImageSrc.isVisible = false
+        }
+        if (courseList[position].meal.creativeCommonsConfirmed ==null){
+            mealConfirmed.isVisible = false
+        }
+        if (courseList[position].meal.dateModified ==null){
+            mealDateModified.isVisible = false
+        }
+
+
+
+        // Load image from URL into ImageView using Glide
+        Glide.with(convertView)
+            .load(courseList[position].meal.mealThumb)
+            .into(mealImage)
+
 //        // at last we are returning our convert view.
         return convertView!!
     }
