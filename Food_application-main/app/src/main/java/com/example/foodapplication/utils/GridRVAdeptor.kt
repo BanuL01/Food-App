@@ -37,6 +37,9 @@ internal class GridRVAdeptor(
     private lateinit var mealInstruction: TextView
     private lateinit var mealThumb: TextView
     private lateinit var mealTags: TextView
+    private lateinit var  mealyt: TextView
+    private lateinit var mealIngredients: TextView
+    private lateinit var mealIngredients2: TextView
     private lateinit var minicard_image: LinearLayout
 
     // below method is use to return the count of course list
@@ -78,6 +81,10 @@ internal class GridRVAdeptor(
         mealInstruction = convertView.findViewById(R.id.instr_tv)
         mealThumb = convertView.findViewById(R.id.meal_tv)
         mealTags = convertView.findViewById(R.id.tags_tv)
+        mealyt = convertView.findViewById(R.id.yt_tv)
+        mealIngredients = convertView.findViewById(R.id.ingre_tv)
+        mealIngredients2 = convertView.findViewById(R.id.ingre_tv)
+
 
 
 
@@ -89,6 +96,10 @@ internal class GridRVAdeptor(
         mealInstruction.text = "Instructions: " + courseList[position].meal.instructions
         mealThumb.text = "Meal Thumb: " + courseList[position].meal.mealThumb
         mealTags.text = "Tags: " + courseList[position].meal.tags
+        mealyt.text = "Youtube: " + courseList[position].meal.youtube
+        mealIngredients.text = "Ingredients: " + courseList[position].meal.Ingredient1
+        mealIngredients2.text = "Ingredients: " + courseList[position].meal.Ingredient2
+
 
 //        // on below line we are setting text in our course text view.
 //        minicard_name.setText(courseList[position].meal_name)
