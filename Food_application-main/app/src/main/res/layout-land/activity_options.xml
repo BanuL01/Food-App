@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/options_et"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EBCDFF"
+    tools:context=".options">
+
+    <ImageView
+        android:id="@+id/logo_dd"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:srcCompat="@drawable/dinedelight_logo"
+        tools:layout_editor_absoluteX="392dp"
+        tools:layout_editor_absoluteY="10dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/text_field_style"
+        android:backgroundTint="#BEFBFBFB"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/add_meals"
+            android:layout_width="131dp"
+            android:layout_height="54dp"
+            android:backgroundTint="#67288F"
+            android:fontFamily="@font/tillana"
+            android:text="Add Meals" />
+
+        <Button
+            android:id="@+id/search2"
+            android:layout_width="250dp"
+            android:layout_height="64dp"
+            android:backgroundTint="#67288F"
+            android:fontFamily="@font/tillana"
+            android:text="Search for Meals By Ingredient" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="250dp"
+            android:layout_height="64dp"
+            android:backgroundTint="#67288F"
+            android:fontFamily="@font/tillana"
+            android:text="Search for Meals" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/layout_style"
+            android:backgroundTint="#7DB070D0"
+            android:ems="10"
+            android:hint="@string/search_in_options"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:textAlignment="center"
+            android:textColorHint="#E98C8181"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

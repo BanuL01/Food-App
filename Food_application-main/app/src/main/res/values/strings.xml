@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Food Application</string>
+    <string name="ingredients">Ingredients to Search Meal..</string>
+    <string name="search_meals">Search Your Meal Here!</string>
+    <string name="search_in_options">Search Meal Here....</string>
 </resources>

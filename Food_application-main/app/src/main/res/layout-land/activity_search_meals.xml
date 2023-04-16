@@ -7,28 +7,17 @@
     android:layout_height="match_parent"
     android:background="#EBCDFF"
     android:orientation="vertical"
+    android:paddingRight="10dp"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp">
-
-    <TextView
-        android:id="@+id/Search_meal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/tillana"
-        android:text="Search and Save"
-        android:textAlignment="center"
-        android:textColor="#220038"
-        android:textSize="34sp"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/layout_style"
         android:backgroundTint="#BEFBFBFB"
         android:orientation="vertical">
@@ -37,13 +26,13 @@
             android:id="@+id/ingredient_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="25dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="80dp"
             android:background="@drawable/text_field_style"
             android:backgroundTint="#7DB070D0"
             android:ems="10"
-            android:hint="@string/ingredients"
+            android:hint="@string/search_meals"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:textAlignment="center"
@@ -55,34 +44,24 @@
             android:layout_width="250dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#67288F"
             android:fontFamily="@font/tillana"
-            android:text="Retrieve Meals" />
-
-        <Button
-            android:id="@+id/save_db_button"
-            android:layout_width="250dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:backgroundTint="#67288F"
-            android:fontFamily="@font/tillana"
-            android:text="Save meals to database" />
-
+            android:text="Search"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <GridView
-        android:id="@+id/grid_layout1"
+        android:id="@+id/minicard_grid_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
         android:horizontalSpacing="10dp"
-        android:numColumns="1"
+        android:numColumns="2"
+        android:paddingBottom="20dp"
         android:verticalSpacing="15dp" />
-
 
 </LinearLayout>
