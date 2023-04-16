@@ -54,6 +54,7 @@ class Search_meals : AppCompatActivity() {
             imm.hideSoftInputFromWindow(ingred_et.windowToken, 0)
             val mealBasedOnName = ArrayList<Meal>()
             val mealBasedOnIngredients = ArrayList<Meal>()
+            selectedMeal.clear()
            if (ingred_et.text.isNotEmpty()){
                for (meal in allSavedMeals){
                    // Using contains function to find a string within another string
@@ -75,10 +76,18 @@ class Search_meals : AppCompatActivity() {
                    }
                }
                selectedMeal = (mealBasedOnIngredients+mealBasedOnName).distinct().toMutableList()
-               println(selectedMeal)
+               if (selectedMeal.size==0){
+                   //show the toast
+                   fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
+                       Toast.makeText(context, message, duration).show()
+                   }
 
-               createMiniCard()
+                   showToast(this, "Meal Or Ingredients Not Found!")
+               }
+
+
            }else{
+               selectedMeal.clear()
                //show the toast
                fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
                    Toast.makeText(context, message, duration).show()
@@ -86,6 +95,7 @@ class Search_meals : AppCompatActivity() {
 
                showToast(this, "Please Enter Meal Or Ingredients!")
            }
+            createMiniCard()
         }
 
         //when press search keyboard enter button
@@ -142,6 +152,8 @@ class Search_meals : AppCompatActivity() {
         // initializing variables of grid view with their ids.
         miniCardLayout = findViewById(R.id.minicard_grid_layout)
         miniCardList = ArrayList<GridViewModal>()
+
+
 
         // on below line we are adding data to
         // our course list with image and course name.
