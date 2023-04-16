@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.room.Room
 import com.example.foodapplication.classes.AppDatabase
@@ -40,11 +41,12 @@ class Search_by_ingredients : AppCompatActivity() {
         setContentView(R.layout.activity_search_by_ingredients)
 
         var meal_id = findViewById<EditText>(R.id.ingredient_et)
-
+        var save = findViewById<Button>(R.id.save_db_button)
         var retrieve = findViewById<Button>(R.id.retrieve_button)
         retrieve.isEnabled = false
+        save.isEnabled = false
 
-        var save = findViewById<Button>(R.id.save_db_button)
+
 
         meal_id.addTextChangedListener(object : TextWatcher {
 
@@ -69,8 +71,12 @@ class Search_by_ingredients : AppCompatActivity() {
             }
         })
         retrieve.setOnClickListener {
+            //keyboard hide
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(meal_id.windowToken, 0)
             //clear all pre used data
             allMeal.clear()
+            save.isEnabled = true
 
             //collecting all JSON string
             var stb = StringBuilder()
@@ -97,6 +103,7 @@ class Search_by_ingredients : AppCompatActivity() {
             courseGRV = findViewById(R.id.grid_layout1)
             courseList = ArrayList<GridViewModal>()
 
+            if (allMeal.size == 0)save.isEnabled = false
 
             // on below line we are adding data to
             // our course list with image and course name.
@@ -124,7 +131,7 @@ class Search_by_ingredients : AppCompatActivity() {
                 }
 
             }
-
+            save.isEnabled = false
         }
     }
 
