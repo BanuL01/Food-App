@@ -26,6 +26,8 @@ import java.net.URL
 class Search_by_ingredients : AppCompatActivity() {
     lateinit var courseGRV: GridView
     lateinit var courseList: List<GridViewModal>
+    lateinit var save: Button
+    var isAllsaved=false
 
     var allMeal = arrayListOf<Meal>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +43,10 @@ class Search_by_ingredients : AppCompatActivity() {
         setContentView(R.layout.activity_search_by_ingredients)
 
         var meal_id = findViewById<EditText>(R.id.ingredient_et)
-        var save = findViewById<Button>(R.id.save_db_button)
+        save = findViewById<Button>(R.id.save_db_button)
         var retrieve = findViewById<Button>(R.id.retrieve_button)
         retrieve.isEnabled = false
         save.isEnabled = false
-
 
 
         meal_id.addTextChangedListener(object : TextWatcher {
@@ -77,6 +78,7 @@ class Search_by_ingredients : AppCompatActivity() {
             //clear all pre used data
             allMeal.clear()
             save.isEnabled = true
+            isAllsaved = false
 
             //collecting all JSON string
             var stb = StringBuilder()
@@ -99,22 +101,9 @@ class Search_by_ingredients : AppCompatActivity() {
                     }
                 }
             }
-            // initializing variables of grid view with their ids.
-            courseGRV = findViewById(R.id.grid_layout1)
-            courseList = ArrayList<GridViewModal>()
-
             if (allMeal.size == 0)save.isEnabled = false
-
-            // on below line we are adding data to
-            // our course list with image and course name.
-            for (meal in allMeal) {
-                courseList = courseList + GridViewModal(meal)
-            }
-            val courseAdapter = GridRVAdeptor_MealCards(courseList = courseList, this@Search_by_ingredients)
-
-            // on below line we are setting adapter to our grid view.
-            courseGRV.adapter = courseAdapter
-
+            //
+            createCard()
         }
 
         save.setOnClickListener {
@@ -132,7 +121,24 @@ class Search_by_ingredients : AppCompatActivity() {
 
             }
             save.isEnabled = false
+            isAllsaved=true
         }
+    }
+
+    private fun createCard() {
+        // initializing variables of grid view with their ids.
+        courseGRV = findViewById(R.id.grid_layout1)
+        courseList = ArrayList<GridViewModal>()
+
+        // on below line we are adding data to
+        // our course list with image and course name.
+        for (meal in allMeal) {
+            courseList = courseList + GridViewModal(meal)
+        }
+        val courseAdapter = GridRVAdeptor_MealCards(courseList = courseList, this@Search_by_ingredients)
+
+        // on below line we are setting adapter to our grid view.
+        courseGRV.adapter = courseAdapter
     }
 
     suspend fun parseJSON(stb: java.lang.StringBuilder) {
@@ -271,5 +277,23 @@ class Search_by_ingredients : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("allMeal", allMeal as ArrayList)
+        println(isAllsaved)
+        outState.putBoolean("isAllsaved", isAllsaved)
+    }
+
+    //
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        isAllsaved = savedInstanceState.getBoolean("isAllsaved")
+        println(isAllsaved)
+        allMeal = savedInstanceState.getSerializable("allMeal") as ArrayList<Meal>
+
+        save.isEnabled = !isAllsaved
+        createCard()
     }
 }
