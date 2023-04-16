@@ -72,12 +72,7 @@ internal class GridRVAdeptor_MiniMealCards(
 
 //        // on below line we are setting image for our course image view.
 
-        if (courseList[position].meal.name?.length!!>16){
-            mealName.text = courseList[position].meal.name?.substring(0, 16) !!
-        }else{
-            mealName.text = courseList[position].meal.name
-        }
-
+        mealName.text = courseList[position].meal.name
         mealCategory.text = "Category: " + courseList[position].meal.category
 
         // Load image from URL into ImageView using Glide

@@ -3,6 +3,7 @@ package com.example.foodapplication.classes
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 
 @Entity(tableName = "meals")
@@ -61,7 +62,4 @@ data class Meal(
     @ColumnInfo(name = "Measure18") var Measure18: String? = null,
     @ColumnInfo(name = "Measure19") var Measure19: String? = null,
     @ColumnInfo(name = "Measure20") var Measure20: String? = null,
-
-
-
-    )
+    ): Serializable

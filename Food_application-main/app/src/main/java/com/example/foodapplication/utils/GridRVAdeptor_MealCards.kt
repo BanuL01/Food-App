@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.foodapplication.R
 
 //source - https://www.geeksforgeeks.org/android-gridview-in-kotlin/
@@ -113,17 +115,6 @@ internal class GridRVAdeptor_MealCards(
         mealDateModified.text = "Date Modified: " + courseList[position].meal.dateModified
 
 
-//        mealArea.isVisible = false
-//        mealInstruction.isVisible = false
-//        mealTags.isVisible = false
-//        mealyt.isVisible = false
-//        mealIngredients.isVisible = false
-//        mealsource.isVisible = false
-//        mealDateModified.isVisible = false
-//        mealConfirmed.isVisible = false
-//        mealImageSrc.isVisible = false
-
-
         if (courseList[position].meal.source ==null){
             mealsource.isVisible = false
         }
@@ -142,7 +133,6 @@ internal class GridRVAdeptor_MealCards(
         if (courseList[position].meal.dateModified ==null){
             mealDateModified.isVisible = false
         }
-
 
 
         // Load image from URL into ImageView using Glide

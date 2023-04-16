@@ -1,10 +1,15 @@
 package com.example.foodapplication
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.GridView
+import android.widget.Toast
 import androidx.room.Room
 import com.example.foodapplication.classes.AppDatabase
 import com.example.foodapplication.classes.Meal
@@ -44,32 +49,92 @@ class Search_meals : AppCompatActivity() {
         ingred_et = findViewById<EditText>(R.id.ingredient_et)
 
         search_button.setOnClickListener {
+            //keyboard hide
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(ingred_et.windowToken, 0)
             val mealBasedOnName = ArrayList<Meal>()
             val mealBasedOnIngredients = ArrayList<Meal>()
-            for (meal in allSavedMeals){
-                // Using contains function to find a string within another string
-                //base on meal name
-                if (meal.name?.contains(ingred_et.text.toString(),ignoreCase = true) == true){
-                    mealBasedOnName.add(meal)
-                }
-                
-                //base on meal ingredients
-                val listofingredients = arrayListOf(meal.Ingredient1,meal.Ingredient2,meal.Ingredient3, meal.Ingredient4, meal.Ingredient5, meal.Ingredient6, meal.Ingredient7, meal.Ingredient8, meal.Ingredient9, meal.Ingredient10, meal.Ingredient11, meal.Ingredient12, meal.Ingredient13, meal.Ingredient14, meal.Ingredient15, meal.Ingredient16, meal.Ingredient17,meal.Ingredient18, meal.Ingredient19, meal.Ingredient20)
-                for (ingredient in listofingredients){
-                    if (ingredient != null) {
-                        if (ingredient.contains(ingred_et.text.toString(),ignoreCase = true)){
-                            mealBasedOnIngredients.add(meal)
-                            break
+           if (ingred_et.text.isNotEmpty()){
+               for (meal in allSavedMeals){
+                   // Using contains function to find a string within another string
+                   //base on meal name
+                   if (meal.name?.contains(ingred_et.text.toString(),ignoreCase = true) == true){
+                       mealBasedOnName.add(meal)
+                   }
+
+                   //base on meal ingredients
+                   val listofingredients = arrayListOf(meal.Ingredient1,meal.Ingredient2,meal.Ingredient3, meal.Ingredient4, meal.Ingredient5, meal.Ingredient6, meal.Ingredient7, meal.Ingredient8, meal.Ingredient9, meal.Ingredient10, meal.Ingredient11, meal.Ingredient12, meal.Ingredient13, meal.Ingredient14, meal.Ingredient15, meal.Ingredient16, meal.Ingredient17,meal.Ingredient18, meal.Ingredient19, meal.Ingredient20)
+                   for (ingredient in listofingredients){
+                       if (ingredient != null) {
+                           if (ingredient.contains(ingred_et.text.toString(),ignoreCase = true)){
+                               mealBasedOnIngredients.add(meal)
+                               break
+                           }
+
+                       }
+                   }
+               }
+               selectedMeal = (mealBasedOnIngredients+mealBasedOnName).distinct().toMutableList()
+               println(selectedMeal)
+
+               createMiniCard()
+           }else{
+               //show the toast
+               fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
+                   Toast.makeText(context, message, duration).show()
+               }
+
+               showToast(this, "Please Enter Meal Or Ingredients!")
+           }
+        }
+
+        //when press search keyboard enter button
+        ingred_et.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                //
+                //keyboard hide
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(ingred_et.windowToken, 0)
+                val mealBasedOnName = ArrayList<Meal>()
+                val mealBasedOnIngredients = ArrayList<Meal>()
+                if (ingred_et.text.isNotEmpty()){
+                    for (meal in allSavedMeals){
+                        // Using contains function to find a string within another string
+                        //base on meal name
+                        if (meal.name?.contains(ingred_et.text.toString(),ignoreCase = true) == true){
+                            mealBasedOnName.add(meal)
                         }
 
-                    }
-                }
-            }
-            selectedMeal = (mealBasedOnIngredients+mealBasedOnName).distinct().toMutableList()
-            println(selectedMeal)
+                        //base on meal ingredients
+                        val listofingredients = arrayListOf(meal.Ingredient1,meal.Ingredient2,meal.Ingredient3, meal.Ingredient4, meal.Ingredient5, meal.Ingredient6, meal.Ingredient7, meal.Ingredient8, meal.Ingredient9, meal.Ingredient10, meal.Ingredient11, meal.Ingredient12, meal.Ingredient13, meal.Ingredient14, meal.Ingredient15, meal.Ingredient16, meal.Ingredient17,meal.Ingredient18, meal.Ingredient19, meal.Ingredient20)
+                        for (ingredient in listofingredients){
+                            if (ingredient != null) {
+                                if (ingredient.contains(ingred_et.text.toString(),ignoreCase = true)){
+                                    mealBasedOnIngredients.add(meal)
+                                    break
+                                }
 
-            createMiniCard()
-        }
+                            }
+                        }
+                    }
+                    selectedMeal = (mealBasedOnIngredients+mealBasedOnName).distinct().toMutableList()
+                    println(selectedMeal)
+
+                    createMiniCard()
+                }else{
+                    //show the toast
+                    fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
+                        Toast.makeText(context, message, duration).show()
+                    }
+
+                    showToast(this, "Please Enter Meal Or Ingredients!")
+                }
+
+
+                return@OnKeyListener true
+            }
+            false
+        })
 
     }
 
@@ -87,6 +152,20 @@ class Search_meals : AppCompatActivity() {
         val courseAdapter = GridRVAdeptor_MiniMealCards(courseList = miniCardList, this@Search_meals)
         // on below line we are setting adapter to our grid view.
         miniCardLayout.adapter = courseAdapter
+    }
+
+    //
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("selectedMeal", selectedMeal as ArrayList)
+    }
+
+    //
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        selectedMeal = savedInstanceState.getSerializable("selectedMeal") as MutableList<Meal>
+        createMiniCard()
+
     }
 
 }
