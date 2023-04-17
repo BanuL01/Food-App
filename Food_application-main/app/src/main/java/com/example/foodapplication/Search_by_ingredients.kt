@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.room.Room
@@ -27,22 +29,22 @@ class Search_by_ingredients : AppCompatActivity() {
     lateinit var courseGRV: GridView
     lateinit var courseList: List<GridViewModal>
     lateinit var save: Button
-    var isAllsaved=false
-
+    var isAllsaved_button=false
+    lateinit var meal_id:EditText
     var allMeal = arrayListOf<Meal>()
     override fun onCreate(savedInstanceState: Bundle?) {
-        // on below line we are creating
-        // variables for grid view and course list
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_search_by_ingredients)
+
         val db = Room.databaseBuilder(
             this, AppDatabase::class.java,
             "mydatabase"
         ).build()
         val MealDao = db.MealDao()
 
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_by_ingredients)
 
-        var meal_id = findViewById<EditText>(R.id.ingredient_et)
+
+        meal_id = findViewById<EditText>(R.id.ingredient_et)
         save = findViewById<Button>(R.id.save_db_button)
         var retrieve = findViewById<Button>(R.id.retrieve_button)
         retrieve.isEnabled = false
@@ -72,38 +74,7 @@ class Search_by_ingredients : AppCompatActivity() {
             }
         })
         retrieve.setOnClickListener {
-            //keyboard hide
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(meal_id.windowToken, 0)
-            //clear all pre used data
-            allMeal.clear()
-            save.isEnabled = true
-            isAllsaved = false
-
-            //collecting all JSON string
-            var stb = StringBuilder()
-            //changing the URl
-            val url_string =
-                "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + meal_id.text.toString()
-            var url = URL(url_string)
-            val con: HttpURLConnection = url.openConnection() as HttpURLConnection
-            runBlocking {
-                launch {
-                    // run the code of the coroutine in a new thread
-                    withContext(Dispatchers.IO) {
-                        var bf = BufferedReader(InputStreamReader(con.inputStream))
-                        var line: String? = bf.readLine()
-                        while (line != null) {
-                            stb.append(line + "\n")
-                            line = bf.readLine()
-                        }
-                        parseJSON(stb)
-                    }
-                }
-            }
-            if (allMeal.size == 0)save.isEnabled = false
-            //
-            createCard()
+            mealSearchFunction()
         }
 
         save.setOnClickListener {
@@ -121,8 +92,54 @@ class Search_by_ingredients : AppCompatActivity() {
 
             }
             save.isEnabled = false
-            isAllsaved=true
+            isAllsaved_button=false
         }
+
+        //
+        //source = https://stackoverflow.com/questions/47298935/handling-enter-key-on-edittext-kotlin-android#:~:text=editText.setOnKeyListener(View.OnKeyListener%20%7B%20v%2C%20keyCode%2C%20event%20%2D%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(keyCode%20%3D%3D%20KeyEvent.KEYCODE_ENTER%20%26%26%20event.action%20%3D%3D%20KeyEvent.ACTION_UP)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20//Perform%20Code%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%40OnKeyListener%20true%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20false%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D)
+        meal_id.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                //Perform Code
+                mealSearchFunction()
+                return@OnKeyListener true
+            }
+            false
+        })
+    }
+
+    private fun mealSearchFunction() {
+        //keyboard hide
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(meal_id.windowToken, 0)
+        //clear all pre used data
+        allMeal.clear()
+        save.isEnabled = true
+        isAllsaved_button = true
+
+        //collecting all JSON string
+        val stb = StringBuilder()
+        //changing the URl
+        val url_string =
+            "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + meal_id.text.toString()
+        var url = URL(url_string)
+        val con: HttpURLConnection = url.openConnection() as HttpURLConnection
+        runBlocking {
+            launch {
+                // run the code of the coroutine in a new thread
+                withContext(Dispatchers.IO) {
+                    var bf = BufferedReader(InputStreamReader(con.inputStream))
+                    var line: String? = bf.readLine()
+                    while (line != null) {
+                        stb.append(line + "\n")
+                        line = bf.readLine()
+                    }
+                    parseJSON(stb)
+                }
+            }
+        }
+        if (allMeal.size == 0)save.isEnabled = false
+        //
+        createCard()
     }
 
     private fun createCard() {
@@ -282,18 +299,16 @@ class Search_by_ingredients : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putSerializable("allMeal", allMeal as ArrayList)
-        println(isAllsaved)
-        outState.putBoolean("isAllsaved", isAllsaved)
+        outState.putBoolean("isAllsaved", isAllsaved_button)
     }
 
     //
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        isAllsaved = savedInstanceState.getBoolean("isAllsaved")
-        println(isAllsaved)
+        isAllsaved_button = savedInstanceState.getBoolean("isAllsaved")
         allMeal = savedInstanceState.getSerializable("allMeal") as ArrayList<Meal>
 
-        save.isEnabled = !isAllsaved
+        save.isEnabled = isAllsaved_button
         createCard()
     }
 }
