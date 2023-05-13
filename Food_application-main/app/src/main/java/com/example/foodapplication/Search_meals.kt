@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.room.Room
 import com.example.foodapplication.classes.AppDatabase
 import com.example.foodapplication.classes.Meal
-import com.example.foodapplication.utils.GridRVAdeptor_MealCards
 import com.example.foodapplication.utils.GridRVAdeptor_MiniMealCards
 import com.example.foodapplication.utils.GridViewModal
 import kotlinx.coroutines.launch
@@ -58,12 +57,12 @@ class Search_meals : AppCompatActivity() {
            if (ingred_et.text.isNotEmpty()){
                for (meal in allSavedMeals){
                    // Using contains function to find a string within another string
-                   //base on meal name
+                   //based on the meal name
                    if (meal.name?.contains(ingred_et.text.toString(),ignoreCase = true) == true){
                        mealBasedOnName.add(meal)
                    }
 
-                   //base on meal ingredients
+                   //base on the ingredients
                    val listofingredients = arrayListOf(meal.Ingredient1,meal.Ingredient2,meal.Ingredient3, meal.Ingredient4, meal.Ingredient5, meal.Ingredient6, meal.Ingredient7, meal.Ingredient8, meal.Ingredient9, meal.Ingredient10, meal.Ingredient11, meal.Ingredient12, meal.Ingredient13, meal.Ingredient14, meal.Ingredient15, meal.Ingredient16, meal.Ingredient17,meal.Ingredient18, meal.Ingredient19, meal.Ingredient20)
                    for (ingredient in listofingredients){
                        if (ingredient != null) {
@@ -82,7 +81,7 @@ class Search_meals : AppCompatActivity() {
                        Toast.makeText(context, message, duration).show()
                    }
 
-                   showToast(this, "Meal Or Ingredients Not Found!")
+                   showToast(this, "Meal Or Ingredient is Not Found!")
                }
 
 
