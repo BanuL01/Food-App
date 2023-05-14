@@ -153,7 +153,7 @@ class Search_meals : AppCompatActivity() {
 
     }
 
-    private fun createMiniCard() {
+     private fun createMiniCard() {
         // initializing variables of grid view with their ids.
         miniCardLayout = findViewById(R.id.minicard_grid_layout)
         miniCardList = ArrayList<GridViewModal>()

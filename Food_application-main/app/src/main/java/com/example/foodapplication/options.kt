@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.room.Room
+import com.example.foodapplication.R.id.search_here_button
 import com.example.foodapplication.classes.AppDatabase
 import com.example.foodapplication.classes.Meal
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import kotlinx.coroutines.runBlocking
 
 class options : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        lateinit var search_here: Button
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options)
 
@@ -21,6 +23,7 @@ class options : AppCompatActivity() {
         val db = Room.databaseBuilder(this, AppDatabase::class.java,
             "mydatabase").build()
         val MealDao = db.MealDao()
+
 
         var search_ingredients = findViewById<Button>(R.id.search2)
         search_ingredients.setOnClickListener {

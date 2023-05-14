@@ -20,6 +20,18 @@
         app:srcCompat="@drawable/dinedelight_logo" />
 
     <Button
+        android:id="@+id/search_here_button"
+        android:layout_width="250dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="#67288F"
+        android:fontFamily="@font/tillana"
+        android:text="Serch Here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_dd" />
+
+    <Button
         android:id="@+id/search"
         android:layout_width="250dp"
         android:layout_height="64dp"
@@ -34,7 +46,7 @@
 
     <Button
         android:id="@+id/add_meals"
-        android:layout_width="131dp"
+        android:layout_width="250dp"
         android:layout_height="54dp"
         android:layout_marginTop="124dp"
         android:backgroundTint="#67288F"
@@ -69,25 +81,5 @@
         app:srcCompat="@drawable/bg3"
         tools:layout_editor_absoluteX="-11dp"
         tools:layout_editor_absoluteY="-200dp" />
-
-    <EditText
-        android:id="@+id/search_here_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/text_field_style"
-        android:backgroundTint="#7DB070D0"
-        android:ems="10"
-        android:hint="@string/search_in_options"
-        android:inputType="textPersonName"
-        android:padding="12dp"
-        android:textAlignment="center"
-        android:textColorHint="#E88C8181"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_dd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
