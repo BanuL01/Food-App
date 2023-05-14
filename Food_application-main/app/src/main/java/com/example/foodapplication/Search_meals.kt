@@ -36,6 +36,7 @@ class Search_meals : AppCompatActivity() {
             "mydatabase").build()
         val MealDao = db.MealDao()
 
+        //retrieves all saved meals from the database using a coroutine and stores them in the 'allSavedMeals' variable.
         runBlocking {
             launch {
                 allSavedMeals = MealDao.getAll()
@@ -51,9 +52,11 @@ class Search_meals : AppCompatActivity() {
             //keyboard hide
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(ingred_et.windowToken, 0)
+
             val mealBasedOnName = ArrayList<Meal>()
             val mealBasedOnIngredients = ArrayList<Meal>()
             selectedMeal.clear()
+
            if (ingred_et.text.isNotEmpty()){
                for (meal in allSavedMeals){
                    // Using contains function to find a string within another string
@@ -85,7 +88,8 @@ class Search_meals : AppCompatActivity() {
                }
 
 
-           }else{
+           }
+           else{
                selectedMeal.clear()
                //show the toast
                fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -100,7 +104,6 @@ class Search_meals : AppCompatActivity() {
         //when press search keyboard enter button
         ingred_et.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                //
                 //keyboard hide
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(ingred_et.windowToken, 0)
@@ -109,15 +112,16 @@ class Search_meals : AppCompatActivity() {
                 if (ingred_et.text.isNotEmpty()){
                     for (meal in allSavedMeals){
                         // Using contains function to find a string within another string
-                        //base on meal name
+                        //based on meal name
                         if (meal.name?.contains(ingred_et.text.toString(),ignoreCase = true) == true){
                             mealBasedOnName.add(meal)
                         }
 
-                        //base on meal ingredients
+                        //based on meal ingredients
                         val listofingredients = arrayListOf(meal.Ingredient1,meal.Ingredient2,meal.Ingredient3, meal.Ingredient4, meal.Ingredient5, meal.Ingredient6, meal.Ingredient7, meal.Ingredient8, meal.Ingredient9, meal.Ingredient10, meal.Ingredient11, meal.Ingredient12, meal.Ingredient13, meal.Ingredient14, meal.Ingredient15, meal.Ingredient16, meal.Ingredient17,meal.Ingredient18, meal.Ingredient19, meal.Ingredient20)
                         for (ingredient in listofingredients){
                             if (ingredient != null) {
+                                // if an ingredient in a list of meals contains the inputted ingredient, and adds the meal to a list if it does.
                                 if (ingredient.contains(ingred_et.text.toString(),ignoreCase = true)){
                                     mealBasedOnIngredients.add(meal)
                                     break
@@ -126,11 +130,13 @@ class Search_meals : AppCompatActivity() {
                             }
                         }
                     }
+                    // assigns the list of meals based on ingredients and name to selectedMeal, remove duplicates and print the resulting list.
                     selectedMeal = (mealBasedOnIngredients+mealBasedOnName).distinct().toMutableList()
                     println(selectedMeal)
 
                     createMiniCard()
-                }else{
+                }
+                else{
                     //show the toast
                     fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
                         Toast.makeText(context, message, duration).show()
@@ -152,10 +158,7 @@ class Search_meals : AppCompatActivity() {
         miniCardLayout = findViewById(R.id.minicard_grid_layout)
         miniCardList = ArrayList<GridViewModal>()
 
-
-
-        // on below line we are adding data to
-        // our course list with image and course name.
+        // on below line adding data to meal list with image and meal name.
         for (meal in selectedMeal) {
             println("reched")
             miniCardList = miniCardList + GridViewModal(meal)
@@ -165,10 +168,10 @@ class Search_meals : AppCompatActivity() {
         miniCardLayout.adapter = courseAdapter
     }
 
-    //
+    //saves the selectedMeal object as an ArrayList in the bundle "outState".
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putSerializable("selectedMeal", selectedMeal as ArrayList)
+        outState.putSerializable("selectedMeal", selectedMeal as ArrayList) //outstate saves the key-value pairs of data
     }
 
     //

@@ -36,6 +36,7 @@ class Search_by_ingredients : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_by_ingredients)
 
+        //Creates an instance of a Room database and initializes a DAO object for accessing data from the Meal table.
         val db = Room.databaseBuilder(
             this, AppDatabase::class.java,
             "mydatabase"
@@ -51,6 +52,7 @@ class Search_by_ingredients : AppCompatActivity() {
         save.isEnabled = false
 
 
+        // detect changes in the EditText field before and after text changes.
         meal_id.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -60,7 +62,7 @@ class Search_by_ingredients : AppCompatActivity() {
                 count: Int, after: Int
             ) {
             }
-
+            //enables/disables the "retrieve" button depending on whether there is any text or not.
             override fun onTextChanged(
                 word: CharSequence, start: Int,
                 before: Int, count: Int
@@ -121,7 +123,7 @@ class Search_by_ingredients : AppCompatActivity() {
         //changing the URl
         val url_string =
             "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + meal_id.text.toString()
-        var url = URL(url_string)
+        val url = URL(url_string)
         val con: HttpURLConnection = url.openConnection() as HttpURLConnection
         runBlocking {
             launch {
@@ -170,9 +172,11 @@ class Search_by_ingredients : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        } else {
+        }
+        else {
             // Information about all the meal extracted by this function
             allMeal.clear() //to reset the array when refreshing the next time
+
             var jsonArray: JSONArray = json.getJSONArray("meals")
             // extract all the meals from the JSON array
             for (i in 0 until jsonArray.length()) {
