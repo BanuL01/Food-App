@@ -16,30 +16,12 @@
         android:backgroundTint="#BEFBFBFB"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="350dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="70dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
-
-        <EditText
-            android:id="@+id/search_here_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/layout_style"
-            android:backgroundTint="#7DB070D0"
-            android:ems="10"
-            android:hint="@string/search_in_options"
-            android:inputType="textPersonName"
-            android:padding="12dp"
-            android:textAlignment="center"
-            android:textColorHint="#E98C8181"
-            android:textSize="20sp" />
 
         <Button
             android:id="@+id/add_meals"

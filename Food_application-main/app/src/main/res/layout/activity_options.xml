@@ -20,18 +20,6 @@
         app:srcCompat="@drawable/dinedelight_logo" />
 
     <Button
-        android:id="@+id/search_here_button"
-        android:layout_width="250dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="#67288F"
-        android:fontFamily="@font/tillana"
-        android:text="Serch Here"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_dd" />
-
-    <Button
         android:id="@+id/search"
         android:layout_width="250dp"
         android:layout_height="64dp"
