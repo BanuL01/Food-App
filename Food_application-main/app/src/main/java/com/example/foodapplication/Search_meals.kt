@@ -163,7 +163,7 @@ class Search_meals : AppCompatActivity() {
             println("reched")
             miniCardList = miniCardList + GridViewModal(meal)
         }
-        val courseAdapter = GridRVAdeptor_MiniMealCards(courseList = miniCardList, this@Search_meals)
+        val courseAdapter = GridRVAdeptor_MiniMealCards(mealGridList = miniCardList, this@Search_meals)
         // on below line we are setting adapter to our grid view.
         miniCardLayout.adapter = courseAdapter
     }

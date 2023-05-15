@@ -13,23 +13,19 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.foodapplication.R
 
 //source - https://www.geeksforgeeks.org/android-gridview-in-kotlin/
 
-// on below line we are creating an
-// adapter class for our grid view.
+// creating an adapter class for our grid view.
 internal class GridRVAdeptor_MealCards(
-    // on below line we are creating two
-    // variables for course list and context
-    private val courseList: List<GridViewModal>,
+
+    // creating two variables for grid list and context
+    private val grid_List: List<GridViewModal>,
     private val context: Context
 ) :
     BaseAdapter() {
-    // in base adapter class we are creating variables
-    // for layout inflater, course image view and course text view.
+    //creating variable for layout inflater,  image view and  text view.
     private var layoutInflater: LayoutInflater? = null
     private lateinit var mealName: TextView
     private lateinit var mealCategory: TextView
@@ -43,40 +39,36 @@ internal class GridRVAdeptor_MealCards(
     private lateinit var mealConfirmed :TextView
     private lateinit var mealDateModified :TextView
     private lateinit var mealImage: ImageView
-    // below method is use to return the count of course list
+
+    //  return the count of grid list
     override fun getCount(): Int {
-        return courseList.size
+        return grid_List.size
     }
 
-    // below function is use to return the item of grid view.
+    // return the item of grid view.
     override fun getItem(position: Int): Any? {
         return null
     }
 
-    // below function is use to return item id of grid view.
+    // return item id of grid view.
     override fun getItemId(position: Int): Long {
         return 0
     }
 
-    // in below function we are getting individual item of grid view.
+    // getting individual item of grid view.
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
-        // on blow line we are checking if layout inflater
-        // is null, if it is null we are initializing it.
+        // checking if layout inflater is null, if it is null, initializing it.
         if (layoutInflater == null) {
-            layoutInflater =
-                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         }
-        // on the below line we are checking if convert view is null.
-        // If it is null we are initializing it.
+        // checking if convert view is null, If it is null, initializing it.
         if (convertView == null) {
-            // on below line we are passing the layout file
-            // which we have to inflate for each item of grid view.
+            // pass the layout file which  have to inflate for each item of grid view.
             convertView = layoutInflater!!.inflate(R.layout.meal_card, null)
         }
-        // on below line we are initializing our course image view
-        // and course text view with their ids.
+        // initialize  grid image view and grid text view with their ids.
         mealName = convertView!!.findViewById(R.id.name_id)
         mealCategory = convertView.findViewById(R.id.category_tv)
         mealArea = convertView.findViewById(R.id.area_tv)
@@ -91,56 +83,55 @@ internal class GridRVAdeptor_MealCards(
         mealImage = convertView.findViewById(R.id.mealthumbId)
         var card = convertView.findViewById<CardView>(R.id.cv1_id)
 
-        var listofingredients = arrayListOf(courseList[position].meal.Ingredient1,courseList[position].meal.Ingredient2,courseList[position].meal.Ingredient3, courseList[position].meal.Ingredient4, courseList[position].meal.Ingredient5, courseList[position].meal.Ingredient6, courseList[position].meal.Ingredient7, courseList[position].meal.Ingredient8, courseList[position].meal.Ingredient9, courseList[position].meal.Ingredient10, courseList[position].meal.Ingredient11, courseList[position].meal.Ingredient12, courseList[position].meal.Ingredient13, courseList[position].meal.Ingredient14, courseList[position].meal.Ingredient15, courseList[position].meal.Ingredient16, courseList[position].meal.Ingredient17,courseList[position].meal.Ingredient18, courseList[position].meal.Ingredient19, courseList[position].meal.Ingredient20)
-        var listofmeasures = arrayListOf(courseList[position].meal.Measure1, courseList[position].meal.Measure2, courseList[position].meal.Measure3, courseList[position].meal.Measure4, courseList[position].meal.Measure5, courseList[position].meal.Measure6, courseList[position].meal.Measure7, courseList[position].meal.Measure8, courseList[position].meal.Measure9, courseList[position].meal.Measure10, courseList[position].meal.Measure11, courseList[position].meal.Measure12, courseList[position].meal.Measure13, courseList[position].meal.Measure14, courseList[position].meal.Measure15, courseList[position].meal.Measure16, courseList[position].meal.Measure17, courseList[position].meal.Measure18, courseList[position].meal.Measure19, courseList[position].meal.Measure20)
+        var ingredientsList = arrayListOf(grid_List[position].meal.Ingredient1,grid_List[position].meal.Ingredient2,grid_List[position].meal.Ingredient3, grid_List[position].meal.Ingredient4, grid_List[position].meal.Ingredient5, grid_List[position].meal.Ingredient6, grid_List[position].meal.Ingredient7, grid_List[position].meal.Ingredient8, grid_List[position].meal.Ingredient9, grid_List[position].meal.Ingredient10, grid_List[position].meal.Ingredient11, grid_List[position].meal.Ingredient12, grid_List[position].meal.Ingredient13, grid_List[position].meal.Ingredient14, grid_List[position].meal.Ingredient15, grid_List[position].meal.Ingredient16, grid_List[position].meal.Ingredient17,grid_List[position].meal.Ingredient18, grid_List[position].meal.Ingredient19, grid_List[position].meal.Ingredient20)
+        var measuresList = arrayListOf(grid_List[position].meal.Measure1, grid_List[position].meal.Measure2, grid_List[position].meal.Measure3, grid_List[position].meal.Measure4, grid_List[position].meal.Measure5, grid_List[position].meal.Measure6, grid_List[position].meal.Measure7, grid_List[position].meal.Measure8, grid_List[position].meal.Measure9, grid_List[position].meal.Measure10, grid_List[position].meal.Measure11, grid_List[position].meal.Measure12, grid_List[position].meal.Measure13, grid_List[position].meal.Measure14, grid_List[position].meal.Measure15, grid_List[position].meal.Measure16, grid_List[position].meal.Measure17, grid_List[position].meal.Measure18, grid_List[position].meal.Measure19, grid_List[position].meal.Measure20)
 
         var Stringtofingredients = ""
         for (index in 0 until  20){
-            if ( listofingredients[index] !="") Stringtofingredients += listofingredients[index] +" - " + listofmeasures[index]+",\n                       "
+            if ( ingredientsList[index] !="") Stringtofingredients += ingredientsList[index] +" - " + measuresList[index]+",\n                       "
         }
 
-//        // on below line we are setting image for our course image view.
+       //setting image for grid image view.
 
-        mealName.text = courseList[position].meal.name
-        mealCategory.text = "Category: " + courseList[position].meal.category
-        mealArea.text = "Area: " + courseList[position].meal.area
-        mealInstruction.text = "Instructions: \n" + courseList[position].meal.instructions
+        mealName.text = grid_List[position].meal.name
+        mealCategory.text = "Category: " + grid_List[position].meal.category
+        mealArea.text = "Area: " + grid_List[position].meal.area
+        mealInstruction.text = "Instructions: \n" + grid_List[position].meal.instructions
         mealInstruction.justificationMode = JUSTIFICATION_MODE_INTER_WORD
-        mealTags.text = "Tags: " + courseList[position].meal.tags
-        mealyt.text = "Youtube: " + courseList[position].meal.youtube
+        mealTags.text = "Tags: " + grid_List[position].meal.tags
+        mealyt.text = "Youtube: " + grid_List[position].meal.youtube
         mealIngredients.text = "Ingredients: " + Stringtofingredients
-        mealsource.text = "Source: " + courseList[position].meal.source
-        mealImageSrc.text = "Image Source: " + courseList[position].meal.imageSource
-        mealConfirmed.text = "Creative Commons Confirmed: " + courseList[position].meal.creativeCommonsConfirmed
-        mealDateModified.text = "Date Modified: " + courseList[position].meal.dateModified
+        mealsource.text = "Source: " + grid_List[position].meal.source
+        mealImageSrc.text = "Image Source: " + grid_List[position].meal.imageSource
+        mealConfirmed.text = "Creative Commons Confirmed: " + grid_List[position].meal.creativeCommonsConfirmed
+        mealDateModified.text = "Date Modified: " + grid_List[position].meal.dateModified
 
 
-        if (courseList[position].meal.source ==null){
+        if (grid_List[position].meal.source ==null){
             mealsource.isVisible = false
         }
-        if (courseList[position].meal.tags ==null){
+        if (grid_List[position].meal.tags ==null){
             mealTags.isVisible = false
         }
-        if (courseList[position].meal.youtube ==null){
+        if (grid_List[position].meal.youtube ==null){
             mealyt.isVisible = false
         }
-        if (courseList[position].meal.imageSource ==null){
+        if (grid_List[position].meal.imageSource ==null){
             mealImageSrc.isVisible = false
         }
-        if (courseList[position].meal.creativeCommonsConfirmed ==null){
+        if (grid_List[position].meal.creativeCommonsConfirmed ==null){
             mealConfirmed.isVisible = false
         }
-        if (courseList[position].meal.dateModified ==null){
+        if (grid_List[position].meal.dateModified ==null){
             mealDateModified.isVisible = false
         }
 
 
         // Load image from URL into ImageView using Glide
         Glide.with(convertView)
-            .load(courseList[position].meal.mealThumb)
+            .load(grid_List[position].meal.mealThumb)
             .into(mealImage)
 
-//        // at last we are returning our convert view.
         return convertView!!
     }
 }

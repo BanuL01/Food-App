@@ -26,8 +26,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class Search_by_ingredients : AppCompatActivity() {
-    lateinit var courseGRV: GridView
-    lateinit var courseList: List<GridViewModal>
+    lateinit var mealsGRV: GridView
+    lateinit var mealsGRVList: List<GridViewModal>
     lateinit var save: Button
     var isAllsaved_button=false
     lateinit var meal_id:EditText
@@ -97,7 +97,7 @@ class Search_by_ingredients : AppCompatActivity() {
             isAllsaved_button=false
         }
 
-        //
+        // sets an OnKeyListener to listen for the "Enter" key and perform a meal search when it is pressed
         //source = https://stackoverflow.com/questions/47298935/handling-enter-key-on-edittext-kotlin-android#:~:text=editText.setOnKeyListener(View.OnKeyListener%20%7B%20v%2C%20keyCode%2C%20event%20%2D%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(keyCode%20%3D%3D%20KeyEvent.KEYCODE_ENTER%20%26%26%20event.action%20%3D%3D%20KeyEvent.ACTION_UP)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20//Perform%20Code%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%40OnKeyListener%20true%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20false%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D)
         meal_id.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
@@ -146,18 +146,17 @@ class Search_by_ingredients : AppCompatActivity() {
 
     private fun createCard() {
         // initializing variables of grid view with their ids.
-        courseGRV = findViewById(R.id.grid_layout1)
-        courseList = ArrayList<GridViewModal>()
+        mealsGRV = findViewById(R.id.grid_layout1)
+        mealsGRVList = ArrayList<GridViewModal>()
 
-        // on below line we are adding data to
-        // our course list with image and course name.
+        // adding data to meal list with image and course name.
         for (meal in allMeal) {
-            courseList = courseList + GridViewModal(meal)
+            mealsGRVList = mealsGRVList + GridViewModal(meal)
         }
-        val courseAdapter = GridRVAdeptor_MealCards(courseList = courseList, this@Search_by_ingredients)
+        val mealsAdapter = GridRVAdeptor_MealCards(grid_List = mealsGRVList, this@Search_by_ingredients)
 
-        // on below line we are setting adapter to our grid view.
-        courseGRV.adapter = courseAdapter
+        //setting adapter to the grid view.
+        mealsGRV.adapter = mealsAdapter
     }
 
     suspend fun parseJSON(stb: java.lang.StringBuilder) {
